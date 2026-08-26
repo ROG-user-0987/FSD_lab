@@ -1,0 +1,31 @@
+body {
+    font-family: Arial, sans-serif;
+}
+.hero {
+    min-height: 500px;
+    background: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url("bckg.jpg") center/cover;
+}
+.card-img-top {
+    height: 220px;
+    object-fit: cover;
+}
+.intro-text {
+    max-width: 700px;
+}
+.about-text {
+    max-width: 650px;
+}
+.card {
+    transition: 0.3s;
+}
+.card:hover {
+    transform: translateY(-5px);
+}
+@media (max-width: 576px) {
+    .hero {
+        min-height: 400px;
+    }
+    .hero h1 {
+        font-size: 2.2rem;
+    }
+}

@@ -1,0 +1,45 @@
+body {
+    font-family: Arial;
+    background-color: lightgray;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+}
+
+td {
+    border: 1px solid black;
+    padding: 15px;
+    vertical-align: top;
+}
+
+.heading {
+    text-align: center;
+    background-color: darkblue;
+    color: white;
+}
+
+.contact {
+    width: 25%;
+}
+
+.about {
+    width: 50%;
+}
+
+.logo {
+    width: 25%;
+    text-align: center;
+}
+
+.logo img {
+    width: 150px;
+}
+
+.footer {
+    text-align: center;
+    background-color: darkblue;
+    color: white;
+}

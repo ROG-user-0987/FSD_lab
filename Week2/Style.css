@@ -1,0 +1,29 @@
+body{
+    font-family: Arial, sans-serif;
+    background:#ffffff;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+
+.quiz-container{
+    background:rgb(230, 233, 235);
+    padding:20px;
+    width:350px;
+    border-radius:10px;
+    box-shadow:0 0 10px rgb(12, 12, 12);
+}
+button{
+    margin-top:15px;
+    padding:10px 20px;
+    background:#0059ff;
+    color:rgb(255, 255, 255);
+    border:none;
+    cursor: pointer;
+    box-shadow:0 0 10px rgb(0, 0, 0);
+}
+
+button:hover{
+    background: #0056b3;
+}

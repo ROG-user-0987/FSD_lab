@@ -1,0 +1,48 @@
+body {
+    font-family: Arial;
+    background-color: lightyellow;
+    text-align: center;
+}
+
+h1 {
+    background-color: brown;
+    color: white;
+    padding: 20px;
+}
+
+.welcome {
+    font-size: 18px;
+}
+
+.menu {
+    width: 70%;
+    margin: auto;
+    background-color: white;
+    padding: 20px;
+}
+
+h2 {
+    color: brown;
+    border-bottom: 2px solid brown;
+    padding: 10px;
+}
+
+.item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    border-bottom: 1px solid lightgray;
+}
+
+footer {
+    margin-top: 20px;
+    background-color: brown;
+    color: white;
+    padding: 10px;
+}
+
+.item img {
+    width: 100px;
+    height: 70px;
+    object-fit: cover;
+}
