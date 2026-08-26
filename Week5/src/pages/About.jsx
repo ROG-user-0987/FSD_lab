@@ -18,7 +18,7 @@ function About() {
         </div>
 
         <div className="card">
-          <h3>Ch Sanjana</h3>
+          <h3>Sanjana Chinamuthevi</h3>
           <h4>Vocal Instructor</h4>
           <p>10+ years of experience in classical and contemporary vocals.</p>
         </div>
