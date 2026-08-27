@@ -1,54 +1,68 @@
-const form = document.getElementById("weatherForm");
+async function getWeather() {
 
-const API_KEY = "YOUR_API_KEY";
+    const city = document.getElementById("cityInput").value;
 
-form.addEventListener("submit", getWeather);
-
-async function getWeather(event) {
-
-    event.preventDefault();
-
-    let city = document.getElementById("city").value;
-
-    let url = `https://api.weatherapi.com/v1/current.json?key=${API_KEY}&q=${city}`;
+    if (city === "") {
+        alert("Please enter a city name");
+        return;
+    }
 
     try {
 
-        let response = await fetch(url);
+        // Get city coordinates
+        const locationResponse = await fetch(
+            `https://geocoding-api.open-meteo.com/v1/search?name=${city}&count=1`
+        );
 
-        let data = await response.json();
+        const locationData = await locationResponse.json();
 
-        if (!response.ok) {
-            throw new Error("City not found");
+        if (!locationData.results) {
+            document.getElementById("weather").innerHTML =
+                "<h2>City not found</h2>";
+            return;
         }
 
-        document.getElementById("weather").style.display = "block";
+        const latitude = locationData.results[0].latitude;
+        const longitude = locationData.results[0].longitude;
+        const cityName = locationData.results[0].name;
 
-        document.getElementById("cityName").textContent =
-            "📍 " + data.location.name;
+        // Get weather using coordinates
+        const weatherResponse = await fetch(
+            `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,relative_humidity_2m,wind_speed_10m`
+        );
 
-        document.getElementById("temperature").textContent =
-            data.current.temp_c + "°C";
+        const weatherData = await weatherResponse.json();
 
-        document.getElementById("condition").textContent =
-            data.current.condition.text;
+        const temperature = weatherData.current.temperature_2m;
+        const humidity = weatherData.current.relative_humidity_2m;
+        const windSpeed = weatherData.current.wind_speed_10m;
 
-        document.getElementById("humidity").textContent =
-            data.current.humidity + "%";
+        document.getElementById("weather").innerHTML = `
+            <h2>${cityName}</h2>
 
-        document.getElementById("wind").textContent =
-            data.current.wind_kph + " km/h";
+            <div class="weather-info">
+                <div>
+                    <h3>🌡️ Temperature</h3>
+                    <p>${temperature} °C</p>
+                </div>
 
-        document.getElementById("error").textContent = "";
+                <div>
+                    <h3>💧 Humidity</h3>
+                    <p>${humidity}%</p>
+                </div>
 
-    }
+                <div>
+                    <h3>💨 Wind Speed</h3>
+                    <p>${windSpeed} km/h</p>
+                </div>
+            </div>
+        `;
 
-    catch (error) {
+    } catch (error) {
 
-        document.getElementById("weather").style.display = "none";
+        document.getElementById("weather").innerHTML =
+            "<h2>Error</h2><p>Unable to fetch weather data.</p>";
 
-        document.getElementById("error").textContent =
-            "City not found. Please try again.";
-
+        console.log(error);
     }
 }
