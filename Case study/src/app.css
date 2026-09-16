@@ -1,0 +1,319 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #05070d;
+  color: white;
+}
+
+.app {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 80% 15%, #17284a, transparent 30%),
+    #05070d;
+}
+
+.navbar {
+  height: 70px;
+  padding: 0 7%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #20283b;
+}
+
+.navbar h2 {
+  letter-spacing: 2px;
+}
+
+.navbar span {
+  color: #00e5ff;
+}
+
+.online {
+  color: #00ff9d;
+  font-size: 12px;
+}
+
+main {
+  width: 86%;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.hero {
+  min-height: 360px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tag {
+  color: #00e5ff;
+  font-size: 13px;
+  letter-spacing: 4px;
+  margin-bottom: 15px;
+}
+
+h1 {
+  font-size: 58px;
+  line-height: 1;
+}
+
+h1 span {
+  color: #00e5ff;
+}
+
+.description {
+  color: #8992a8;
+  max-width: 500px;
+  margin-top: 20px;
+  line-height: 1.6;
+}
+
+.ai-orb {
+  width: 230px;
+  height: 230px;
+  border: 2px solid #00e5ff;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 0 60px #00e5ff55;
+  animation: pulse 2s infinite;
+}
+
+.ai-orb div {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background: #0b1328;
+  display: grid;
+  place-items: center;
+  color: #00e5ff;
+  font-size: 40px;
+}
+
+@keyframes pulse {
+  50% {
+    transform: scale(1.06);
+    box-shadow: 0 0 90px #00e5ff77;
+  }
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+}
+
+.card,
+.panel,
+.activity {
+  background: #0b101c;
+  border: 1px solid #20283b;
+  border-radius: 12px;
+  padding: 22px;
+}
+
+.card p {
+  color: #69748c;
+  font-size: 12px;
+}
+
+.card h2 {
+  margin-top: 10px;
+  font-size: 30px;
+}
+
+.danger h2,
+.high-risk,
+.activity b {
+  color: #ff4668;
+}
+
+.safe h2,
+.activity em {
+  color: #00ff9d;
+}
+
+.analysis {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 20px;
+}
+
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.panel-header span {
+  color: #00ff9d;
+  font-size: 11px;
+}
+
+.caller {
+  margin: 30px 0;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.avatar {
+  background: #151e31;
+  padding: 15px;
+  border-radius: 50%;
+}
+
+.caller p {
+  color: #707b91;
+  margin-top: 5px;
+}
+
+.audio-title {
+  color: #69748c;
+  font-size: 11px;
+}
+
+.wave {
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+}
+
+.wave i {
+  width: 4px;
+  height: 30px;
+  background: #00e5ff;
+  border-radius: 5px;
+  animation: wave 1s infinite alternate;
+}
+
+.wave i:nth-child(odd) {
+  animation-delay: 0.2s;
+}
+
+@keyframes wave {
+  to {
+    height: 80px;
+  }
+}
+
+button {
+  width: 100%;
+  padding: 15px;
+  border: none;
+  border-radius: 7px;
+  background: #00e5ff;
+  color: #001014;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button:hover {
+  box-shadow: 0 0 25px #00e5ff88;
+}
+
+button:disabled {
+  opacity: 0.5;
+}
+
+.result {
+  text-align: center;
+}
+
+.score {
+  width: 180px;
+  height: 180px;
+  border: 10px solid #ff4668;
+  border-radius: 50%;
+  margin: 25px auto;
+  display: grid;
+  place-items: center;
+}
+
+.score strong {
+  font-size: 40px;
+}
+
+.score p {
+  color: #707b91;
+  font-size: 10px;
+}
+
+.warnings {
+  margin-top: 20px;
+  text-align: left;
+}
+
+.warnings p {
+  background: #17111a;
+  color: #ff879d;
+  padding: 12px;
+  margin: 8px 0;
+  border-radius: 5px;
+}
+
+.activity {
+  margin: 20px 0 50px;
+}
+
+.activity h2 {
+  margin-bottom: 15px;
+}
+
+.activity-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 120px;
+  padding: 15px 0;
+  border-top: 1px solid #20283b;
+  color: #aab2c2;
+}
+
+.activity em {
+  font-style: normal;
+}
+
+@media (max-width: 800px) {
+
+  .hero {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 40px;
+  }
+
+  h1 {
+    font-size: 42px;
+  }
+
+  .ai-orb {
+    width: 160px;
+    height: 160px;
+  }
+
+  .ai-orb div {
+    width: 105px;
+    height: 105px;
+  }
+
+  .stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .analysis {
+    grid-template-columns: 1fr;
+  }
+
+  .activity-row {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+}
