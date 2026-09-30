@@ -1,0 +1,40 @@
+<div class="container">
+  <h2>Contact Us</h2>
+  <p>Fill out the form below to get in touch.</p>
+
+  <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+
+    <label>Name</label>
+    <input type="text" formControlName="name" placeholder="Enter your name">
+    <small *ngIf="f['name'].touched && f['name'].invalid">
+      Name is required.
+    </small>
+
+    <label>Email</label>
+    <input type="email" formControlName="email" placeholder="Enter your email">
+    <small *ngIf="f['email'].touched && f['email'].errors?.['required']">
+      Email is required.
+    </small>
+    <small *ngIf="f['email'].touched && f['email'].errors?.['email']">
+      Enter a valid email address.
+    </small>
+
+    <label>Phone Number</label>
+    <input type="text" formControlName="phone" placeholder="10-digit phone number">
+    <small *ngIf="f['phone'].touched && f['phone'].invalid">
+      Enter a valid 10-digit phone number.
+    </small>
+
+    <label>Message</label>
+    <textarea formControlName="message" placeholder="Write your message"></textarea>
+    <small *ngIf="f['message'].touched && f['message'].invalid">
+      Message must contain at least 10 characters.
+    </small>
+
+    <button type="submit">Submit</button>
+
+    <p class="success" *ngIf="submitted && contactForm.valid">
+      Form submitted successfully!
+    </p>
+  </form>
+</div>
