@@ -1,132 +1,44 @@
-
-import { useEffect, useState } from "react";
-import "./App.css";
+import { useState, useEffect } from 'react';
 
 function App() {
-  const [activities, setActivities] = useState(() => {
-    try {
-      return JSON.parse(localStorage.getItem("studentActivities")) || [];
-    } catch {
-      return [];
-    }
-  });
-
-  const [activity, setActivity] = useState("");
+  const [task, setTask] = useState('');
+  const [tasks, setTasks] = useState(
+    JSON.parse(localStorage.getItem('tasks') || '[]')
+  );
 
   useEffect(() => {
-    localStorage.setItem("studentActivities", JSON.stringify(activities));
-  }, [activities]);
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+  }, [tasks]);
 
-  const addActivity = (e) => {
-    e.preventDefault();
+  function addTask() {
+    if (task.trim() !== '') {
+      setTasks([...tasks, task]);
+      setTask('');
+    }
+  }
 
-    if (!activity.trim()) return;
-
-    setActivities([
-      ...activities,
-      {
-        id: Date.now(),
-        name: activity.trim(),
-        completed: false,
-      },
-    ]);
-
-    setActivity("");
-  };
-
-  const toggleActivity = (id) => {
-    setActivities((current) =>
-      current.map((item) =>
-        item.id === id ? { ...item, completed: !item.completed } : item
-      )
-    );
-  };
-
-  const deleteActivity = (id) => {
-    setActivities((current) => current.filter((item) => item.id !== id));
-  };
-
-  const completedCount = activities.filter((item) => item.completed).length;
+  function deleteTask(index) {
+    setTasks(tasks.filter((_, i) => i !== index));
+  }
 
   return (
-    <main className="app">
-      <header className="header">
-        <p className="eyebrow">STUDENT PLANNER</p>
-        <h1>Daily Activities</h1>
-        <p className="subtitle">Organize your day and keep track of your progress.</p>
-      </header>
+    <div>
+      <h2>ToDo App</h2>
 
-      <section className="summary">
-        <div>
-          <span className="summary-number">{activities.length}</span>
-          <span className="summary-label">Total Activities</span>
-        </div>
-        <div>
-          <span className="summary-number">{completedCount}</span>
-          <span className="summary-label">Completed</span>
-        </div>
-        <div>
-          <span className="summary-number">
-            {activities.length - completedCount}
-          </span>
-          <span className="summary-label">Remaining</span>
-        </div>
-      </section>
+      <input
+        value={task}
+        onChange={e => setTask(e.target.value)}
+        placeholder="Enter task"
+      />
 
-      <section className="card">
-        <h2>Add an Activity</h2>
+      <button onClick={addTask}>Add</button>
 
-        <form onSubmit={addActivity} className="activity-form">
-          <input
-            type="text"
-            value={activity}
-            onChange={(e) => setActivity(e.target.value)}
-            placeholder="e.g. Complete assignment"
-            aria-label="Activity name"
-          />
-          <button type="submit">Add Activity</button>
-        </form>
-      </section>
-
-      <section className="card">
-        <div className="list-heading">
-          <h2>My Activities</h2>
-          <span>{completedCount} of {activities.length} completed</span>
-        </div>
-
-        {activities.length === 0 ? (
-          <p className="empty-state">
-            No activities added yet. Add your first activity above.
-          </p>
-        ) : (
-          <ul className="activity-list">
-            {activities.map((item) => (
-              <li className="activity-item" key={item.id}>
-                <label className="activity-info">
-                  <input
-                    type="checkbox"
-                    checked={item.completed}
-                    onChange={() => toggleActivity(item.id)}
-                  />
-                  <span className={item.completed ? "completed" : ""}>
-                    {item.name}
-                  </span>
-                </label>
-
-                <button
-                  className="delete-button"
-                  onClick={() => deleteActivity(item.id)}
-                  aria-label={`Delete ${item.name}`}
-                  type="button"
-                >
-                  Delete
-                </button>
-              </li>
-            ))}
-          </ul>
-        )}
-      </section>
-    </main>
+      {tasks.map((t, i) => (
+        <p key={i}>
+          {t} <button onClick={() => deleteTask(i)}>Delete</button>
+        </p>
+      ))}
+    </div>
   );
 }
 
