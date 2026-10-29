@@ -281,6 +281,86 @@ button:disabled {
   font-style: normal;
 }
 
+/* ---------- Backend-connected parts ---------- */
+
+.offline {
+  color: #ff4668;
+  font-size: 12px;
+}
+
+.empty,
+.no-audio,
+.message {
+  color: #707b91;
+  margin: 20px 0;
+}
+
+.no-audio {
+  font-size: 12px;
+  text-align: center;
+}
+
+audio {
+  width: 100%;
+  margin: 10px 0 20px;
+}
+
+input {
+  width: 100%;
+  padding: 13px;
+  background: #05070d;
+  border: 1px solid #20283b;
+  border-radius: 7px;
+  color: white;
+}
+
+input:focus {
+  outline: none;
+  border-color: #00e5ff;
+}
+
+.inline-form {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+button.small {
+  width: auto;
+  padding: 0 18px;
+  white-space: nowrap;
+}
+
+button.delete {
+  margin-top: 10px;
+  background: transparent;
+  border: 1px solid #ff4668;
+  color: #ff4668;
+}
+
+button.delete:hover {
+  box-shadow: 0 0 25px #ff466855;
+}
+
+.activity-row.clickable {
+  cursor: pointer;
+}
+
+.activity-row.clickable:hover,
+.activity-row.selected {
+  background: #111a2c;
+}
+
+.upload-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.upload-form input[type="file"] {
+  color: #8992a8;
+}
+
 @media (max-width: 800px) {
 
   .hero {
@@ -315,5 +395,9 @@ button:disabled {
   .activity-row {
     grid-template-columns: 1fr;
     gap: 8px;
+  }
+
+  .upload-form {
+    grid-template-columns: 1fr;
   }
 }
